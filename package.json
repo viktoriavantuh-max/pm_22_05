@@ -1,0 +1,22 @@
+{
+  "name": "pm_22_05",
+  "version": "1.0.0",
+  "description": "Web labs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/viktoriavantuh-max/pm_22_05.git"
+  },
+  "author": "Vika",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/viktoriavantuh-max/pm_22_05/issues"
+  },
+  "homepage": "https://github.com/viktoriavantuh-max/pm_22_05#readme",
+  "devDependencies": {
+    "gulp": "^5.0.1"
+  }
+}
