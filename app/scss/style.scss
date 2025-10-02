@@ -1,0 +1,22 @@
+body {
+    background: lightblue;
+    font-family: Arial;
+    padding: 50px;
+    text-align: center;
+}
+
+h1 {
+    color: darkblue;
+}
+
+button {
+    background: green;
+    color: white;
+    padding: 15px;
+    border: none;
+    cursor: pointer;
+    
+    &:hover {
+        background: darkgreen;
+    }
+}

@@ -1,30 +1,25 @@
 {
   "name": "pm_22_05",
   "version": "1.0.0",
-  "description": "Web labs",
-  "main": "index.js",
+  "description": "Gulp automation project",
+  "main": "gulpfile.js",
+  "type": "commonjs",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "gulp",
+    "build": "gulp html && gulp scss && gulp js && gulp img"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/viktoriavantuh-max/pm_22_05.git"
-  },
-  "author": "Vika",
+  "keywords": ["gulp", "automation"],
+  "author": "",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/viktoriavantuh-max/pm_22_05/issues"
-  },
-  "homepage": "https://github.com/viktoriavantuh-max/pm_22_05#readme",
   "devDependencies": {
-    "browser-sync": "^3.0.4",
-    "gulp": "^5.0.1",
+    "browser-sync": "^2.29.3",
+    "gulp": "^4.0.2",
     "gulp-concat": "^2.6.1",
     "gulp-cssnano": "^2.1.3",
-    "gulp-file-include": "^2.3.0",
-    "gulp-imagemin": "^9.1.0",
-    "gulp-rename": "^2.1.0",
-    "gulp-sass": "^6.0.1",
-    "gulp-uglify": "^3.0.2"
+    "gulp-rename": "^2.0.0",
+    "gulp-sass": "^5.1.0",
+    "gulp-uglify": "^3.0.2",
+    "gulp-imagemin": "^7.1.0",
+    "sass": "^1.69.5"
   }
 }
