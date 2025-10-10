@@ -1,63 +1,31 @@
-const { src, dest, watch, series, parallel } = require("gulp");
-const sass = require("gulp-sass")(require("sass"));
-const cssnano = require("gulp-cssnano");
-const rename = require("gulp-rename");
-const uglify = require("gulp-uglify");
-const concat = require("gulp-concat");
-const imagemin = require("gulp-imagemin");
-const browserSync = require("browser-sync").create();
+const gulp = require('gulp');
+const path = require('path');
+const sass = require('gulp-sass')(require('sass'));
+const cleanCSS = require('gulp-clean-css');
+const rename = require('gulp-rename');
 
-function html_task() {
-  return src("app/html/*.html")      // ✅ бере всі html з папки app/html
-    .pipe(dest("dist"))
-    .pipe(browserSync.stream());
-}
+// Таск для копіювання Bootstrap CSS
+gulp.task('copy-bootstrap-css', function() {
+  return gulp.src('node_modules/bootstrap/dist/css/bootstrap.min.css')
+    .pipe(gulp.dest('app/scss'));
+});
 
-// SCSS -> CSS
-function scss_task() {
-  return src("app/scss/*.scss")      // всі SCSS файли
-    .pipe(sass().on("error", sass.logError))
-    .pipe(cssnano())
-    .pipe(rename({ suffix: ".min" }))
-    .pipe(dest("dist/css"))
-    .pipe(browserSync.stream());
-}
+// Таск для копіювання Bootstrap JS
+gulp.task('copy-bootstrap-js', function() {
+  return gulp.src('node_modules/bootstrap/dist/js/bootstrap.bundle.min.js')
+    .pipe(gulp.dest('app/js'));
+});
 
-// JS
-function js_task() {
-  return src("app/js/*.js")
-    .pipe(concat("script.js"))
-    .pipe(uglify())
-    .pipe(rename({ suffix: ".min" }))
-    .pipe(dest("dist/js"))
-    .pipe(browserSync.stream());
-}
+gulp.task('styles', function() {
+  return gulp.src('app/scss/style.scss') // звідки брати SCSS
+    .pipe(sass().on('error', sass.logError)) // компіляція
+    .pipe(cleanCSS()) // мініфікація
+    .pipe(rename({ suffix: '.min' })) // додає .min у назву
+    .pipe(gulp.dest('dist/css')); // куди зберегти
+});
 
-// Images
-function img_task() {
-  return src("app/img/**/*")
-    .pipe(imagemin())
-    .pipe(dest("dist/img"))
-    .pipe(browserSync.stream());
-}
+// Основний таск зборки
+gulp.task('build', gulp.series('copy-bootstrap-css', 'copy-bootstrap-js'));
 
-// Сервер + спостереження
-function serve() {
-  browserSync.init({
-    server: {
-      baseDir: "dist"
-    },
-    port: 3000
-  });
-
-  watch("app/index.html", html_task);
-  watch("app/scss/**/*.scss", scss_task);
-  watch("app/js/**/*.js", js_task);
-  watch("app/img/**/*", img_task);
-}
-
-// Будівля
-const build = parallel(html_task, scss_task, js_task, img_task);
-
-exports.build = build;
-exports.default = series(build, serve);
+// Таск за замовчуванням
+gulp.task('default', gulp.series('build'));

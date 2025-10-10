@@ -1,22 +1,197 @@
+/* Загальні стилі */
 body {
-    background: lightblue;
-    font-family: Arial;
-    padding: 50px;
-    text-align: center;
+    font-family: 'Arial', 'Helvetica', sans-serif;
+    line-height: 1.6;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    padding: 20px 0;
 }
 
-h1 {
-    color: darkblue;
+/* Контейнер */
+.container {
+    max-width: 1200px;
 }
 
-button {
-    background: green;
-    color: white;
-    padding: 15px;
+/* Картки */
+.card {
     border: none;
-    cursor: pointer;
-    
-    &:hover {
-        background: darkgreen;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+    margin-bottom: 20px;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+.card-body {
+    padding: 25px;
+}
+
+/* Заголовки */
+.display-4 {
+    color: #e0e312;
+    font-weight: 700;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.h4, .h5, .h6 {
+    color: #1bab0e;
+    font-weight: 600;
+}
+
+/* Секція контактів */
+.contact-info h6 {
+    color: #df1e08;
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+
+.contact-info p {
+    color: #e70d0d;
+    margin-bottom: 15px;
+}
+
+/* Секція освіти */
+.education-item {
+    border-left: 3px solid #3498db;
+    padding-left: 15px;
+    margin-bottom: 20px;
+}
+
+.education-item:last-child {
+    margin-bottom: 0;
+}
+
+/* Навички */
+.list-unstyled li {
+    padding: 8px 0;
+    border-bottom: 1px solid #ecf0f1;
+    transition: background-color 0.3s ease;
+}
+
+.list-unstyled li:hover {
+    background-color: #f8f9fa;
+    padding-left: 10px;
+}
+
+.badge {
+    font-size: 12px;
+}
+
+/* Досвід роботи */
+.experience-item {
+    background: #f8f9fa;
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 15px;
+    border-left: 4px solid #27ae60;
+}
+
+.experience-item:last-child {
+    margin-bottom: 0;
+}
+
+/* Хедер */
+.bg-light {
+    background: linear-gradient(135deg, #74b9ff 0%, #0984e3 100%) !important;
+    color: white;
+}
+
+.bg-light .display-4,
+.bg-light .h3 {
+    color: white;
+}
+
+/* Кольори для тексту */
+.text-primary {
+    color: #e2ed06 !important;
+}
+
+.text-success {
+    color: #27ae60 !important;
+}
+
+.text-muted {
+    color: #7f8c8d !important;
+}
+
+/* Посилання */
+a {
+    color: #3498db;
+    text-decoration: none;
+}
+
+a:hover {
+    color: #2980b9;
+    text-decoration: underline;
+}
+
+/* Адаптивність */
+@media (max-width: 768px) {
+    .container {
+        padding: 0 15px;
     }
+    
+    .card-body {
+        padding: 15px;
+    }
+    
+    .display-4 {
+        font-size: 2rem;
+    }
+}
+
+/* Анімації */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.card {
+    animation: fadeIn 0.6s ease-out;
+}
+
+/* Кастомні класи */
+.profile-image {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 5px solid white;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.skill-bar {
+    background: #ecf0f1;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+
+.skill-level {
+    background: linear-gradient(135deg, #3498db, #2980b9);
+    height: 8px;
+    border-radius: 10px;
+}
+
+/* Кнопки (якщо будуть потрібні) */
+.btn-custom {
+    background: linear-gradient(135deg, #e74c3c, #c0392b);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 25px;
+    transition: all 0.3s ease;
+}
+
+.btn-custom:hover {
+    transform: scale(1.05);
+    box-shadow: 0 5px 15px rgba(231, 76, 60, 0.4);
 }
