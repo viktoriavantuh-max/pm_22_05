@@ -1,197 +1,294 @@
-/* Загальні стилі */
+// === ЗМІННІ ===
+$primary-color: #f2c100;
+$font-main: 'Roboto';
+$text-color: #444;
+
+// === МІКСІН ===
+@mixin yellow-line($width: 40px) {
+  content: "";
+  display: block;
+  width: $width;
+  height: 3px;
+  background-color: $primary-color;
+  margin-top: 13px;
+}
+
+// === БАЗОВИЙ КЛАС ДЛЯ НАСЛІДУВАННЯ ===
+.text-base {
+  font-size: 16px;
+  font-family: $font-main;
+  color: $text-color;
+}
+
+// === Основні налаштування ===
 body {
-    font-family: 'Arial', 'Helvetica', sans-serif;
-    line-height: 1.6;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    min-height: 100vh;
-    padding: 20px 0;
+  font-family: 'Bebas Neue', Arial, sans-serif;
+  padding: 0;
+  color: $text-color;
 }
 
-/* Контейнер */
 .container {
-    max-width: 1200px;
+  background: #fff;
+  max-width: 1000px;
+  margin: 40px auto;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-wrap: wrap;
+  border-radius: 6px;
+  overflow: visible; // дозволяємо квадрату виступати за край
+  position: relative;
 }
 
-/* Картки */
-.card {
-    border: none;
-    border-radius: 15px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease;
-    margin-bottom: 20px;
+// === Ліва колонка ===
+.col-lg-4 {
+  background-color: #f7f7f7;
+  padding: 40px 50px;
 }
 
-.card:hover {
-    transform: translateY(-5px);
+.profile-photo {
+  display: block;
+  width: 180px;
+  height: 180px;
+  border-radius: 60%;
+  object-fit: cover;
+  margin: 0 auto 30px;
 }
 
-.card-body {
-    padding: 25px;
+// === Заголовки ===
+h1.card-title,
+h2.card-title {
+  color: $primary-color;
+  font-weight: 700;
+  font-size: 18px;
+  margin-bottom: 10px;
+  text-transform: uppercase;
+  position: relative;
+  display: inline-block;
+
+  &::after {
+    @include yellow-line(44px);
+  }
 }
 
-/* Заголовки */
-.display-4 {
-    color: #e0e312;
+// ===CONTACT===
+.contact-info {
+  h3 {
+    font-size: 17px;
+    font-family: $font-main;
+    font-weight: 600;
+    color: #555;
+    margin-bottom: 3px;
+  }
+
+  p {
+    @extend .text-base;
+    margin-bottom: 12px;
+  }
+}
+
+// ===EDUCATION===
+.education-item p {
+  margin-top: 20px;
+  @extend .text-base;
+  font-size: 18px;
+}
+
+// === SKILLS ===
+.skills {
+  .skills-list {
+    list-style: none;
+    padding-left: 5px;
+
+    li {
+      position: relative;
+      padding-left: 23px;
+      @extend .text-base;
+      margin-bottom: 15px;
+
+      &::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 10px;
+        width: 6px;
+        height: 6px;
+        background-color: $primary-color;
+      }
+    }
+  }
+}
+
+// === Права колонка ===
+.col-lg-8 {
+  padding: 40px 55px;
+  flex: 0.7;
+}
+
+// ===HEADER===
+.header {
+  margin-bottom: 40px;
+
+  h1 {
+    font-size: 40px + 10px; // математична операція
+    color: $primary-color;
+    font-weight: 800;
+  }
+
+  h2 {
+    font-size: 20px;
+    font-weight: 500;
+    color: #222;
+  }
+}
+
+// ===PROFILE===
+.card-body1 {
+  h3.card-title {
+    color: $primary-color;
+    font-size: 16px;
     font-weight: 700;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-.h4, .h5, .h6 {
-    color: #1bab0e;
-    font-weight: 600;
-}
-
-/* Секція контактів */
-.contact-info h6 {
-    color: #df1e08;
-    font-weight: 600;
-    margin-bottom: 5px;
-}
-
-.contact-info p {
-    color: #e70d0d;
-    margin-bottom: 15px;
-}
-
-/* Секція освіти */
-.education-item {
-    border-left: 3px solid #3498db;
-    padding-left: 15px;
     margin-bottom: 20px;
+
+    &::after {
+      @include yellow-line(40px);
+    }
+  }
+
+  p {
+    @extend .text-base;
+  }
 }
 
-.education-item:last-child {
-    margin-bottom: 0;
+// ===EXPERIENCE===
+.card-body2 {
+  margin-top: 30px;
+  margin-bottom: 10px;
+
+  h3.card-title {
+    color: $primary-color;
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 20px;
+
+    &::after {
+      @include yellow-line(40px);
+    }
+  }
+
+  h4 {
+    color: #555;
+    font-size: 15px;
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+
+  .company {
+    color: #555;
+    font-weight: bold;
+    font-size: 17px;
+    margin-bottom: 5px;
+  }
+
+  p {
+    @extend .text-base;
+  }
 }
 
-/* Навички */
-.list-unstyled li {
-    padding: 8px 0;
-    border-bottom: 1px solid #ecf0f1;
-    transition: background-color 0.3s ease;
+// ===REFERENCE===
+.reference-section {
+  margin-top: 30px;
+
+  .reference {
+    display: flex;
+    justify-content: flex-start;
+    gap: 30px;
+    margin-top: 15px;
+
+    .ref-block {
+      @extend .text-base;
+
+      p {
+        margin: 2px;
+        color: $text-color;
+
+        &:nth-child(2) {
+          font-weight: bold;
+          color: #555;
+        }
+      }
+    }
+
+    .divider {
+      width: 2px;
+      background-color: $primary-color;
+      height: 60px;
+      align-self: center;
+    }
+  }
+  margin-bottom: 15px;
 }
 
-.list-unstyled li:hover {
-    background-color: #f8f9fa;
-    padding-left: 10px;
+// ===HOBBIES===
+.card-body2 {
+  .hobbies {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 40px;
+    margin-top: 20px;
+  }
+
+  .hobby {
+    img {
+      width: 55px;
+      height: 55px;
+    }
+  }
 }
 
-.badge {
-    font-size: 12px;
+/* === Декоративні жовті квадрати === */
+.yellow-square {
+  position: absolute;
+  background-color: $primary-color;
+  z-index: 10;
 }
 
-/* Досвід роботи */
-.experience-item {
-    background: #f8f9fa;
-    border-radius: 10px;
-    padding: 20px;
-    margin-bottom: 15px;
-    border-left: 4px solid #27ae60;
+/* Верхня смужка */
+.top-square {
+  top: 0;
+  left: 60px;
+  width: 35px;
+  height: 18px;
 }
 
-.experience-item:last-child {
-    margin-bottom: 0;
+/* Нижній квадрат */
+.bottom-square {
+  bottom: -20px; // виступає за край
+  left: 60px;
+  width: 40px;
+  height: 40px;
+  background-color: rgba(230, 193, 0, 0.6);
+  position: absolute;
 }
 
-/* Хедер */
-.bg-light {
-    background: linear-gradient(135deg, #74b9ff 0%, #0984e3 100%) !important;
-    color: white;
-}
-
-.bg-light .display-4,
-.bg-light .h3 {
-    color: white;
-}
-
-/* Кольори для тексту */
-.text-primary {
-    color: #e2ed06 !important;
-}
-
-.text-success {
-    color: #27ae60 !important;
-}
-
-.text-muted {
-    color: #7f8c8d !important;
-}
-
-/* Посилання */
-a {
-    color: #3498db;
-    text-decoration: none;
-}
-
-a:hover {
-    color: #2980b9;
-    text-decoration: underline;
-}
-
-/* Адаптивність */
+/* === Адаптивність === */
 @media (max-width: 768px) {
-    .container {
-        padding: 0 15px;
+  .col-lg-4,
+  .col-lg-8 {
+    padding: 25px;
+  }
+
+  .header h1 {
+    font-size: 28px;
+  }
+
+  .reference {
+    flex-direction: column;
+    align-items: center;
+
+    .divider {
+      display: none;
     }
-    
-    .card-body {
-        padding: 15px;
-    }
-    
-    .display-4 {
-        font-size: 2rem;
-    }
-}
-
-/* Анімації */
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-.card {
-    animation: fadeIn 0.6s ease-out;
-}
-
-/* Кастомні класи */
-.profile-image {
-    width: 150px;
-    height: 150px;
-    border-radius: 50%;
-    object-fit: cover;
-    border: 5px solid white;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-}
-
-.skill-bar {
-    background: #ecf0f1;
-    border-radius: 10px;
-    margin-bottom: 10px;
-}
-
-.skill-level {
-    background: linear-gradient(135deg, #3498db, #2980b9);
-    height: 8px;
-    border-radius: 10px;
-}
-
-/* Кнопки (якщо будуть потрібні) */
-.btn-custom {
-    background: linear-gradient(135deg, #e74c3c, #c0392b);
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 25px;
-    transition: all 0.3s ease;
-}
-
-.btn-custom:hover {
-    transform: scale(1.05);
-    box-shadow: 0 5px 15px rgba(231, 76, 60, 0.4);
+  }
 }
