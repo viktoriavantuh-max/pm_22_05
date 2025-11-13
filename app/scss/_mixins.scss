@@ -1,0 +1,8 @@
+@mixin yellow-line($width: 40px) {
+  content: "";
+  display: block;
+  width: $width;
+  height: 3px;
+  background-color: #f2c100;
+  margin-top: 13px;
+}

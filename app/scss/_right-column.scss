@@ -1,0 +1,112 @@
+@use 'variables' as v;
+@use 'mixins' as m;
+@use 'base';
+
+.col-lg-8 {
+  padding: 40px 55px;
+  flex: 0.7;
+}
+
+.header {
+  margin-bottom: 40px;
+
+  h1 {
+    font-size: 50px;
+    color: v.$primary-color;
+    font-weight: 800;
+  }
+
+  h2 {
+    font-size: 20px;
+    font-weight: 500;
+    color: #222;
+  }
+}
+
+.profile,
+.experience {
+  h2.card-title {
+    color: v.$primary-color;
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 20px;
+
+    &::after {
+      @include m.yellow-line(40px);
+    }
+  }
+
+  p {
+    @extend .text-base;
+    
+  }
+
+ p.card-text{
+         @extend .text-base;
+         margin-bottom: 15px;
+    } 
+
+  h4 {
+    color: #666;
+    font-size: 15px;
+    font-weight: 700;
+    margin: 2px;
+  }
+
+  .company {
+    color: #666;
+    font-weight: 600;
+    font-size: 17px;
+    margin: 2px;
+  }
+}
+
+
+  
+
+
+.reference{
+  margin-top: 20px;
+  margin-bottom: 15px;
+
+  .reference {
+    display: flex;
+    justify-content: flex-start;
+    gap: 30px;
+
+    .ref-block {
+      @extend .text-base;
+
+      p {
+        margin: 2px;
+        color: v.$text-color;
+
+        &:nth-child(2) {
+          font-weight: bold;
+          color: #666;
+        }
+      }
+    }
+
+    .divider {
+      width: 2px;
+      background-color: v.$primary-color;
+      height: 60px;
+      align-self: center;
+    }
+  }
+}
+
+.hobbies {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 40px;
+  margin-top: 20px;
+
+  .hobby img {
+    width: 55px;
+    height: 55px;
+  }
+}

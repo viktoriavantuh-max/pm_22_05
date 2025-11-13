@@ -1,0 +1,26 @@
+@use 'variables' as v;
+
+.text-base {
+  font-size: 16px;
+  font-family: v.$font-main;
+  color: v.$text-color;
+}
+
+body {
+  font-family: v.$font-main, 'Bebas Neue', Arial, sans-serif;
+  color: v.$text-color;
+  padding: 0;
+  margin: 0;
+}
+
+.container {
+  background: #fff;
+  max-width: 1000px;
+  margin: 40px auto;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-wrap: wrap;
+  border-radius: 6px;
+  overflow: visible;
+  position: relative;
+}

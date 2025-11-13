@@ -15,7 +15,7 @@ const paths = {
     js:  'node_modules/bootstrap/dist/js/bootstrap.bundle.min.js'
   },
   scss: {
-    src: 'app/scss/style.scss',
+    src: 'app/scss/main.scss',
     all: 'app/scss/**/*.scss'
   },
   app: {
@@ -23,72 +23,34 @@ const paths = {
     js:  'app/js',
     html: 'app/*.html',
     img: 'app/img/**/*'
-  },
-  dist: {
-    base: 'dist',
-    css: 'dist/css',
-    js:  'dist/js',
-    img: 'dist/img'
   }
 };
 
 // -------------------------
-// Очищення dist
-// -------------------------
-function clean() {
-  return deleteAsync(['dist/**']);
-}
-
-// -------------------------
-// Копіювання Bootstrap CSS
-// -------------------------
-function copyBootstrapCss() {
-  return src(paths.bootstrap.css)
-    .pipe(dest(paths.app.css))
-    .pipe(dest(paths.dist.css));
-}
-
-// -------------------------
-// Копіювання Bootstrap JS
-// -------------------------
-function copyBootstrapJs() {
-  return src(paths.bootstrap.js)
-    .pipe(dest(paths.app.js))
-    .pipe(dest(paths.dist.js));
-}
-
-// -------------------------
-// Копіювання зображень
-// -------------------------
-function copyImages() {
-  return src(paths.app.img)
-    .pipe(dest(paths.dist.img));
-}
-
-// -------------------------
-// Копіювання HTML
-// -------------------------
-function copyHtml() {
-  return src(paths.app.html)
-    .pipe(dest(paths.dist.base));
-}
-
-// -------------------------
-// Компіляція SCSS -> CSS
+// Компіляція SCSS → CSS
 // -------------------------
 function compileScss() {
   return src(paths.scss.src)
     .pipe(sourcemaps.init())
     .pipe(sass().on('error', sass.logError))
     .pipe(cleanCss())
-    .pipe(rename({ 
-      basename: 'style', 
-      suffix: '.min' 
-    }))
+    .pipe(rename({ basename: 'main', suffix: '.min' }))
     .pipe(sourcemaps.write('.'))
     .pipe(dest(paths.app.css))
-    .pipe(dest(paths.dist.css))
     .pipe(browsersync.stream());
+}
+
+// -------------------------
+// Копіювання Bootstrap
+// -------------------------
+function copyBootstrapCss() {
+  return src(paths.bootstrap.css)
+    .pipe(dest(paths.app.css));
+}
+
+function copyBootstrapJs() {
+  return src(paths.bootstrap.js)
+    .pipe(dest(paths.app.js));
 }
 
 // -------------------------
@@ -100,7 +62,7 @@ function browserSyncInit(cb) {
       baseDir: './app'
     },
     notify: false,
-    open: false
+    open: true
   });
   cb();
 }
@@ -120,22 +82,15 @@ function watchFiles() {
 }
 
 // -------------------------
-// Build / Dev
+// Tasks
 // -------------------------
-const build = series(
-  clean,
-  parallel(copyBootstrapCss, copyBootstrapJs, copyHtml, copyImages),
-  compileScss
-);
-
 const dev = series(
-  build,
+  parallel(copyBootstrapCss, copyBootstrapJs),
+  compileScss,
   browserSyncInit,
   watchFiles
 );
 
 // Експорти
-exports.clean = clean;
-exports.build = build;
 exports.default = dev;
 exports.dev = dev;
