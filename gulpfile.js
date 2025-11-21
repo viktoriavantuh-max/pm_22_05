@@ -15,14 +15,14 @@ const paths = {
     js:  'node_modules/bootstrap/dist/js/bootstrap.bundle.min.js'
   },
   scss: {
-    src: 'app/scss/main.scss',
-    all: 'app/scss/**/*.scss'
+    src: 'src/app/scss/main.scss',
+    all: 'src/app/scss/**/*.scss'
   },
   app: {
-    css: 'app/css',
-    js:  'app/js',
-    html: 'app/*.html',
-    img: 'app/img/**/*'
+    css: 'src/app/css',
+    js:  'src/app/js',
+    html: 'src/app/*.html',
+    img: 'src/app/img/**/*'
   }
 };
 
@@ -59,7 +59,7 @@ function copyBootstrapJs() {
 function browserSyncInit(cb) {
   browsersync.init({
     server: {
-      baseDir: './app'
+      baseDir: './src/app'   // ← ТУТ ВАЖЛИВО
     },
     notify: false,
     open: true
@@ -78,7 +78,7 @@ function browserSyncReload(cb) {
 function watchFiles() {
   watch(paths.scss.all, compileScss);
   watch(paths.app.html, browserSyncReload);
-  watch('app/js/**/*.js', browserSyncReload);
+  watch('src/app/js/**/*.js', browserSyncReload);
 }
 
 // -------------------------
@@ -91,6 +91,5 @@ const dev = series(
   watchFiles
 );
 
-// Експорти
 exports.default = dev;
 exports.dev = dev;
